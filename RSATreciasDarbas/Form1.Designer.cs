@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            boxKeyValue = new RichTextBox();
             boxTextValue = new RichTextBox();
             btnDecypt = new Button();
             btnEncypt = new Button();
@@ -38,19 +37,15 @@
             boxOutputValue = new RichTextBox();
             label3 = new Label();
             label4 = new Label();
+            boxPublicKey = new RichTextBox();
+            btnGenerate = new Button();
+            label5 = new Label();
+            boxPrivateKey = new RichTextBox();
             SuspendLayout();
-            // 
-            // boxKeyValue
-            // 
-            boxKeyValue.Location = new Point(68, 12);
-            boxKeyValue.Name = "boxKeyValue";
-            boxKeyValue.Size = new Size(412, 101);
-            boxKeyValue.TabIndex = 1;
-            boxKeyValue.Text = "";
             // 
             // boxTextValue
             // 
-            boxTextValue.Location = new Point(68, 119);
+            boxTextValue.Location = new Point(126, 119);
             boxTextValue.Name = "boxTextValue";
             boxTextValue.Size = new Size(412, 123);
             boxTextValue.TabIndex = 2;
@@ -58,7 +53,7 @@
             // 
             // btnDecypt
             // 
-            btnDecypt.Location = new Point(405, 248);
+            btnDecypt.Location = new Point(463, 248);
             btnDecypt.Name = "btnDecypt";
             btnDecypt.Size = new Size(75, 23);
             btnDecypt.TabIndex = 3;
@@ -68,7 +63,7 @@
             // 
             // btnEncypt
             // 
-            btnEncypt.Location = new Point(68, 248);
+            btnEncypt.Location = new Point(126, 248);
             btnEncypt.Name = "btnEncypt";
             btnEncypt.Size = new Size(75, 23);
             btnEncypt.TabIndex = 4;
@@ -79,17 +74,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(8, 15);
+            label1.Location = new Point(27, 12);
             label1.Name = "label1";
-            label1.Size = new Size(54, 15);
+            label1.Size = new Size(93, 15);
             label1.TabIndex = 5;
-            label1.Text = "Key Field";
+            label1.Text = "Private Key Field";
             label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(8, 119);
+            label2.Location = new Point(66, 119);
             label2.Name = "label2";
             label2.Size = new Size(56, 15);
             label2.TabIndex = 6;
@@ -121,11 +116,49 @@
             label4.TabIndex = 9;
             label4.Text = resources.GetString("label4.Text");
             // 
+            // boxPublicKey
+            // 
+            boxPublicKey.Location = new Point(701, 12);
+            boxPublicKey.Name = "boxPublicKey";
+            boxPublicKey.Size = new Size(389, 230);
+            boxPublicKey.TabIndex = 10;
+            boxPublicKey.Text = "";
+            // 
+            // btnGenerate
+            // 
+            btnGenerate.Location = new Point(701, 248);
+            btnGenerate.Name = "btnGenerate";
+            btnGenerate.Size = new Size(75, 23);
+            btnGenerate.TabIndex = 11;
+            btnGenerate.Text = "Generate Keys";
+            btnGenerate.UseVisualStyleBackColor = true;
+            btnGenerate.Click += btnGenerate_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(605, 15);
+            label5.Name = "label5";
+            label5.Size = new Size(90, 15);
+            label5.TabIndex = 12;
+            label5.Text = "Public Key Field";
+            // 
+            // boxPrivateKey
+            // 
+            boxPrivateKey.Location = new Point(126, 12);
+            boxPrivateKey.Name = "boxPrivateKey";
+            boxPrivateKey.Size = new Size(412, 101);
+            boxPrivateKey.TabIndex = 1;
+            boxPrivateKey.Text = "";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1274, 725);
+            Controls.Add(label5);
+            Controls.Add(btnGenerate);
+            Controls.Add(boxPublicKey);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(boxOutputValue);
@@ -134,7 +167,7 @@
             Controls.Add(btnEncypt);
             Controls.Add(btnDecypt);
             Controls.Add(boxTextValue);
-            Controls.Add(boxKeyValue);
+            Controls.Add(boxPrivateKey);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "RSA Encyption Application";
@@ -144,8 +177,6 @@
         }
 
         #endregion
-
-        private RichTextBox boxKeyValue;
         private RichTextBox boxTextValue;
         private Button btnDecypt;
         private Button btnEncypt;
@@ -154,5 +185,9 @@
         private RichTextBox boxOutputValue;
         private Label label3;
         private Label label4;
+        private RichTextBox boxPublicKey;
+        private Button btnGenerate;
+        private Label label5;
+        private RichTextBox boxPrivateKey;
     }
 }

@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,42 +23,83 @@ namespace RSATreciasDarbas
 
         }
 
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                //Create a new RSACryptoServiceProvider object.
+                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                {
+
+                    //Export the key information to an RSAParameters object.
+                    //Pass false to export the public key information or pass
+                    //true to export public and private key information.
+                    RSAParameters RSAParams = RSA.ExportParameters(true);
+
+                    //Convert RSAParams to XML string
+                    var xmlString = RSA.ToXmlString(false);
+
+                    //Print the XML string
+                    boxPublicKey.Text = xmlString;
+
+                    /*                    //Convert the key components to Base64-encoded strings
+                                        string modulus = Convert.ToBase64String(RSAParams.Modulus);
+                                        string exponent = Convert.ToBase64String(RSAParams.Exponent);*/
+                }
+            }
+            catch (CryptographicException ex)
+            {
+                //Catch this exception in case the encryption did
+                //not succeed.
+                Console.WriteLine(ex.Message);
+            }
+
+        }
+
         private void btnDecypt_Click(object sender, EventArgs e)
         {
             try
             {
-                //Create a UnicodeEncoder to convert between byte array and string.
-                UnicodeEncoding ByteConverter = new UnicodeEncoding();
 
-                //Create byte arrays to hold original, encrypted, and decrypted data.
-                byte[] dataToEncrypt = ByteConverter.GetBytes("Data to Encrypt");
-                byte[] encryptedData;
-                byte[] decryptedData;
-
-                //Create a new instance of RSACryptoServiceProvider to generate
-                //public and private key data.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                if (boxTextValue.Text == String.Empty)
                 {
-
-                    //Pass the data to ENCRYPT, the public key information 
-                    //(using RSACryptoServiceProvider.ExportParameters(false),
-                    //and a boolean flag specifying no OAEP padding.
-                    encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
-                    //Pass the data to DECRYPT, the private key information 
-                    //(using RSACryptoServiceProvider.ExportParameters(true),
-                    //and a boolean flag specifying no OAEP padding.
-                    decryptedData = RSADecrypt(encryptedData, RSA.ExportParameters(true), false);
-
-                    //Display the decrypted plaintext to the console. 
-                    Console.WriteLine("Decrypted plaintext: {0}", ByteConverter.GetString(decryptedData));
-                    boxOutputValue.Text = ByteConverter.GetString(decryptedData);
+                    boxOutputValue.Text = "Please provide text value. String is empty!";
                 }
+                else
+                {
+                    //Create a UnicodeEncoder to convert between byte array and string.
+                    UnicodeEncoding ByteConverter = new UnicodeEncoding();
+
+                    //Create byte arrays to hold original, encrypted, and decrypted data.
+                    byte[] dataToEncrypt = ByteConverter.GetBytes(boxTextValue.Text);
+                    byte[] encryptedData;
+                    byte[] decryptedData;
+
+                    //Create a new instance of RSACryptoServiceProvider to generate
+                    //public and private key data.
+                    using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                    {
+
+                        //Pass the data to ENCRYPT, the public key information 
+                        //(using RSACryptoServiceProvider.ExportParameters(false),
+                        //and a boolean flag specifying no OAEP padding.
+                        encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
+                        //Pass the data to DECRYPT, the private key information 
+                        //(using RSACryptoServiceProvider.ExportParameters(true),
+                        //and a boolean flag specifying no OAEP padding.
+                        decryptedData = RSADecrypt(encryptedData, RSA.ExportParameters(true), false);
+
+                        //Display the decrypted plaintext to the console. 
+                        Console.WriteLine("Decrypted plaintext: {0}", ByteConverter.GetString(decryptedData));
+                        boxOutputValue.Text = ByteConverter.GetString(decryptedData);
+                    }
+                }
+
             }
             catch (ArgumentNullException)
             {
-                //Catch this exception in case the encryption did
-                //not succeed.
-                Console.WriteLine("Encryption failed.");
+                boxOutputValue.Text = "Encryption failed.";
             }
 
         }
@@ -65,30 +108,44 @@ namespace RSATreciasDarbas
         {
             try
             {
-                //Create a UnicodeEncoder to convert between byte array and string.
-                UnicodeEncoding ByteConverter = new UnicodeEncoding();
-
-                //Create byte arrays to hold original, encrypted, and decrypted data.
-                byte[] dataToEncrypt = ByteConverter.GetBytes("Data to Encrypt");
-                byte[] encryptedData;
-
-                //Create a new instance of RSACryptoServiceProvider to generate
-                //public and private key data.
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                if (boxTextValue.Text == String.Empty)
                 {
+                    boxOutputValue.Text = "Please provide text value. String is empty!";
+                }
+                else
+                {
+                    //Create a UnicodeEncoder to convert between byte array and string.
+                    UnicodeEncoding ByteConverter = new UnicodeEncoding();
 
-                    //Pass the data to ENCRYPT, the public key information 
-                    //(using RSACryptoServiceProvider.ExportParameters(false),
-                    //and a boolean flag specifying no OAEP padding.
-                    encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
-                    boxOutputValue.Text = Convert.ToBase64String(encryptedData);
+                    //Create byte arrays to hold original, encrypted, and decrypted data.
+                    byte[] dataToEncrypt = ByteConverter.GetBytes("Data to Encrypt");
+                    byte[] encryptedData;
+
+                    //Create a new instance of RSACryptoServiceProvider to generate
+                    //public and private key data.
+                    using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                    {
+
+                        //Pass the data to ENCRYPT, the public key information 
+                        //(using RSACryptoServiceProvider.ExportParameters(false),
+                        //and a boolean flag specifying no OAEP padding.
+                        encryptedData = RSAEncrypt(dataToEncrypt, RSA.ExportParameters(false), false);
+                        boxOutputValue.Text = Convert.ToBase64String(encryptedData);
+
+                        // Show public key
+                        RSAParameters RSAParams = RSA.ExportParameters(true);
+
+                        //Convert RSAParams to XML string
+                        var xmlString = RSA.ToXmlString(false);
+
+                        //Print the XML string
+                        boxPublicKey.Text = xmlString;
+                    }
                 }
             }
             catch (ArgumentNullException)
             {
-                //Catch this exception in case the encryption did
-                //not succeed.
-                Console.WriteLine("Encryption failed.");
+                boxOutputValue.Text = "Encryption failed.";
             }
 
 
