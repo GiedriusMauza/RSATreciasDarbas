@@ -45,15 +45,15 @@
             // 
             // boxTextValue
             // 
-            boxTextValue.Location = new Point(126, 119);
+            boxTextValue.Location = new Point(67, 15);
             boxTextValue.Name = "boxTextValue";
-            boxTextValue.Size = new Size(412, 123);
+            boxTextValue.Size = new Size(480, 291);
             boxTextValue.TabIndex = 2;
             boxTextValue.Text = "";
             // 
             // btnDecypt
             // 
-            btnDecypt.Location = new Point(463, 248);
+            btnDecypt.Location = new Point(472, 312);
             btnDecypt.Name = "btnDecypt";
             btnDecypt.Size = new Size(75, 23);
             btnDecypt.TabIndex = 3;
@@ -63,7 +63,7 @@
             // 
             // btnEncypt
             // 
-            btnEncypt.Location = new Point(126, 248);
+            btnEncypt.Location = new Point(67, 312);
             btnEncypt.Name = "btnEncypt";
             btnEncypt.Size = new Size(75, 23);
             btnEncypt.TabIndex = 4;
@@ -74,7 +74,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 12);
+            label1.Location = new Point(602, 122);
             label1.Name = "label1";
             label1.Size = new Size(93, 15);
             label1.TabIndex = 5;
@@ -84,7 +84,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(66, 119);
+            label2.Location = new Point(7, 15);
             label2.Name = "label2";
             label2.Size = new Size(56, 15);
             label2.TabIndex = 6;
@@ -110,7 +110,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(-2, 357);
+            label4.Location = new Point(-1, 445);
             label4.Name = "label4";
             label4.Size = new Size(1277, 15);
             label4.TabIndex = 9;
@@ -120,13 +120,13 @@
             // 
             boxPublicKey.Location = new Point(701, 12);
             boxPublicKey.Name = "boxPublicKey";
-            boxPublicKey.Size = new Size(389, 230);
+            boxPublicKey.Size = new Size(480, 101);
             boxPublicKey.TabIndex = 10;
             boxPublicKey.Text = "";
             // 
             // btnGenerate
             // 
-            btnGenerate.Location = new Point(701, 248);
+            btnGenerate.Location = new Point(701, 421);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(75, 23);
             btnGenerate.TabIndex = 11;
@@ -145,9 +145,9 @@
             // 
             // boxPrivateKey
             // 
-            boxPrivateKey.Location = new Point(126, 12);
+            boxPrivateKey.Location = new Point(701, 119);
             boxPrivateKey.Name = "boxPrivateKey";
-            boxPrivateKey.Size = new Size(412, 101);
+            boxPrivateKey.Size = new Size(480, 296);
             boxPrivateKey.TabIndex = 1;
             boxPrivateKey.Text = "";
             // 
