@@ -41,7 +41,11 @@
             textBoxDecrypted = new TextBox();
             buttonSaveFile = new Button();
             buttonRead = new Button();
-            textPrivateKey = new TextBox();
+            textPublicKey = new TextBox();
+            label5 = new Label();
+            textBoxPrivateKey = new TextBox();
+            label6 = new Label();
+            textBoxFilePath = new TextBox();
             SuspendLayout();
             // 
             // textBoxP
@@ -123,7 +127,7 @@
             // 
             // buttonDecrypt
             // 
-            buttonDecrypt.Location = new Point(1072, 41);
+            buttonDecrypt.Location = new Point(1072, 84);
             buttonDecrypt.Name = "buttonDecrypt";
             buttonDecrypt.Size = new Size(229, 23);
             buttonDecrypt.TabIndex = 9;
@@ -140,7 +144,7 @@
             // 
             // buttonSaveFile
             // 
-            buttonSaveFile.Location = new Point(1120, 408);
+            buttonSaveFile.Location = new Point(1226, 408);
             buttonSaveFile.Name = "buttonSaveFile";
             buttonSaveFile.Size = new Size(75, 23);
             buttonSaveFile.TabIndex = 11;
@@ -150,27 +154,64 @@
             // 
             // buttonRead
             // 
-            buttonRead.Location = new Point(1201, 408);
+            buttonRead.Location = new Point(821, 408);
             buttonRead.Name = "buttonRead";
-            buttonRead.Size = new Size(100, 23);
+            buttonRead.Size = new Size(331, 23);
             buttonRead.TabIndex = 12;
             buttonRead.Text = "Read from File";
             buttonRead.UseVisualStyleBackColor = true;
             buttonRead.Click += buttonRead_Click;
             // 
-            // textPrivateKey
+            // textPublicKey
             // 
-            textPrivateKey.Location = new Point(814, 409);
-            textPrivateKey.Name = "textPrivateKey";
-            textPrivateKey.Size = new Size(100, 23);
-            textPrivateKey.TabIndex = 13;
+            textPublicKey.Location = new Point(1072, 45);
+            textPublicKey.Name = "textPublicKey";
+            textPublicKey.Size = new Size(100, 23);
+            textPublicKey.TabIndex = 13;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(1053, 51);
+            label5.Name = "label5";
+            label5.Size = new Size(13, 15);
+            label5.TabIndex = 14;
+            label5.Text = "E";
+            label5.Click += label5_Click;
+            // 
+            // textBoxPrivateKey
+            // 
+            textBoxPrivateKey.Location = new Point(1201, 45);
+            textBoxPrivateKey.Name = "textBoxPrivateKey";
+            textBoxPrivateKey.Size = new Size(100, 23);
+            textBoxPrivateKey.TabIndex = 15;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(1180, 51);
+            label6.Name = "label6";
+            label6.Size = new Size(15, 15);
+            label6.TabIndex = 16;
+            label6.Text = "D";
+            // 
+            // textBoxFilePath
+            // 
+            textBoxFilePath.Location = new Point(821, 379);
+            textBoxFilePath.Name = "textBoxFilePath";
+            textBoxFilePath.Size = new Size(331, 23);
+            textBoxFilePath.TabIndex = 17;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1313, 443);
-            Controls.Add(textPrivateKey);
+            Controls.Add(textBoxFilePath);
+            Controls.Add(label6);
+            Controls.Add(textBoxPrivateKey);
+            Controls.Add(label5);
+            Controls.Add(textPublicKey);
             Controls.Add(buttonRead);
             Controls.Add(buttonSaveFile);
             Controls.Add(textBoxDecrypted);
@@ -209,6 +250,10 @@
         private TextBox textBoxDecrypted;
         private Button buttonSaveFile;
         private Button buttonRead;
-        private TextBox textPrivateKey;
+        private TextBox textPublicKey;
+        private Label label5;
+        private TextBox textBoxPrivateKey;
+        private Label label6;
+        private TextBox textBoxFilePath;
     }
 }

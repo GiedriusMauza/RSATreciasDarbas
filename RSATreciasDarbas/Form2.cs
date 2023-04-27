@@ -60,11 +60,12 @@ namespace RSATreciasDarbas
                 // Viešojo rakto radimas
                 // Public key is (e, n) => (7, 33)
                 BigInteger e = GetPublicKey(phi);
-                textPrivateKey.Text = e.ToString();
+                textPublicKey.Text = e.ToString();
 
                 // Privačiojo rakto radimas
                 // Private key is (d, n) => (3, 33)
                 BigInteger d = GetPrivateKey(e, phi);
+                textBoxPrivateKey.Text = d.ToString();
 
                 // Šifravimas
                 // The encryption of m = 2 is c = 27 % 33 = 29
@@ -100,24 +101,24 @@ namespace RSATreciasDarbas
                 BigInteger p = BigInteger.Parse(textBoxP.Text);
                 BigInteger q = BigInteger.Parse(textBoxQ.Text);
 
-                // Įvesti pradinį skaičių x
-                BigInteger x = BigInteger.Parse(textBoxInput.Text);
+                /*                // Įvesti pradinį skaičių x
+                                BigInteger x = BigInteger.Parse(textBoxInput.Text);*/
 
 
                 // Šifravimo algoritmui reikalingų parametrų radimas
                 //Compute n = p * q = 3 * 11 = 33
                 // Compute φ(n) = (p - 1) * (q - 1) = 2 * 10 = 20
                 BigInteger n = p * q;
-                BigInteger phi = (p - 1) * (q - 1);
+                /*                BigInteger phi = (p - 1) * (q - 1);*/
 
                 // Viešojo rakto radimas
                 // Public key is (e, n) => (7, 33)
-                BigInteger e = GetPublicKey(phi);
+                BigInteger e = BigInteger.Parse(textPublicKey.Text);
 
 
                 // Privačiojo rakto radimas
                 // Private key is (d, n) => (3, 33)
-                BigInteger d = GetPrivateKey(e, phi);
+                BigInteger d = BigInteger.Parse(textBoxPrivateKey.Text);
 
                 // Šifravimas
                 // The encryption of m = 2 is c = 27 % 33 = 29
@@ -136,12 +137,16 @@ namespace RSATreciasDarbas
 
         private void buttonSaveFile_Click(object sender, EventArgs e)
         {
-            WriteToFile(textPrivateKey.Text, textBoxOutput.Text);
+            WriteToFile(textPublicKey.Text, textBoxOutput.Text);
 
         }
 
         private void buttonRead_Click(object sender, EventArgs e)
         {
+            var input = textBoxFilePath.Text.Trim();
+            JsonDataObject fileValues = ParseJson(input);
+            textPublicKey.Text = fileValues.Key;
+            textBoxOutput.Text = fileValues.Encypted;
 
         }
 
@@ -284,6 +289,10 @@ namespace RSATreciasDarbas
             return null;
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class JsonDataObject
